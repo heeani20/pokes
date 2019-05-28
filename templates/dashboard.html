@@ -1,0 +1,44 @@
+{% extends './layout.html' %}
+{% block title %}Poke{% endblock %}
+{% block body %}
+
+
+<div class="poke">
+    <br><p2>{{ user.alias }}</p2>
+    <div class="poke_user">
+    {% for users in ['user_who_poke'] %}
+    <h6>{{ users['count_all_poke']|length }} people poke you</a></h6>
+    {% endfor %}
+    </div>
+</div>
+
+
+<h1>People you may want to poke:</h1>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Email Address</th>
+            <th>Poke History</th>
+            <th>Action</th>    
+        </tr>
+    </thead>
+    <tbody>
+        {% for users in all_user %}
+            {% if session %}
+            <!-- logged.in -->
+            <tr>
+                <td>{{ users.first_name }}{{ users.last_name }}</td>
+                <td>{{ users.alias }}</td>
+                <td>{{ users.email }}</td>
+                <td><h6>{{ users["user_who_poke"]|length }} poke</a></h6></td>
+                <td><a href="/users/{{ user['id'] }}/poke">Poke</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
